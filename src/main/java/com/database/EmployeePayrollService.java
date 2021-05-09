@@ -17,8 +17,9 @@ public class EmployeePayrollService {
     }
 
     public EmployeePayrollService(){
-        employeePayrollDBService = EmployeePayrollDBService.getInstance();
+        employeePayrollDBService = new EmployeePayrollDBService();
     }
+
 
     public List<EmployeePayrollData> readEmployeePayrollDataDB(IOService ioService){
         if(ioService.equals(IOService.DB_IO))
