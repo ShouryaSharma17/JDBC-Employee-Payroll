@@ -1,9 +1,11 @@
 package com.database;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class EmployeePayrollService {
+
     public enum IOService {
         CONSOLE_IO, FILE_IO,DB_IO
     }
@@ -17,10 +19,8 @@ public class EmployeePayrollService {
     }
 
     public EmployeePayrollService(){
-        employeePayrollDBService = new EmployeePayrollDBService();
+        employeePayrollDBService = EmployeePayrollDBService.getInstance();
     }
-
-
     public List<EmployeePayrollData> readEmployeePayrollDataDB(IOService ioService){
         if(ioService.equals(IOService.DB_IO))
             this.employeePayrollList = employeePayrollDBService.readData();
@@ -71,6 +71,11 @@ public class EmployeePayrollService {
         return employeePayrollList.size();
     }
 
+    public List<EmployeePayrollData> readEmployeePayrollDataForDateRange(IOService ioService, LocalDate startDate, LocalDate endDate) {
+        if(ioService.equals(IOService.DB_IO))
+            return employeePayrollDBService.getEmployeePayrollForDateRange(startDate,endDate);
+        return null;
+    }
     public void printData(IOService ioService) {
         if (ioService.equals(IOService.FILE_IO))
             new EmployeePayrollFileIOService().printData();
@@ -81,7 +86,6 @@ public class EmployeePayrollService {
             return new EmployeePayrollFileIOService().countEntries();
         return 0;
     }
-
     public static void main(String[] args) {
         ArrayList<EmployeePayrollData> employeePayrollList = new ArrayList<>();
         EmployeePayrollService employeePayrollService = new EmployeePayrollService(employeePayrollList);

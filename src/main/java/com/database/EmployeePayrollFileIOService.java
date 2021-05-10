@@ -24,7 +24,7 @@ public class EmployeePayrollFileIOService {
         }
     }
 
-    // Print the Employee Payroll
+    // print payrolls
     public void printData(){
         try{
             Files.lines(new File(PAYROLL_FILE_NAME).toPath())
@@ -33,7 +33,7 @@ public class EmployeePayrollFileIOService {
             e.printStackTrace();
         }
     }
-    // Count Entries
+    // count entries
     public long countEntries() {
         long entries = 0;
         try {
@@ -43,7 +43,7 @@ public class EmployeePayrollFileIOService {
         }
         return entries;
     }
-    // Read data
+
     public List<EmployeePayrollData> readData() {
         List<EmployeePayrollData> employeePayrollList = new ArrayList<>();
         try{
@@ -56,4 +56,3 @@ public class EmployeePayrollFileIOService {
         return employeePayrollList;
     }
 }
-
