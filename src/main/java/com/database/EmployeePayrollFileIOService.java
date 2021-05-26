@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeePayrollFileIOService {
+
     public static String PAYROLL_FILE_NAME = "payroll-file.txt";
 
     public void writeData(List<EmployeePayrollData> employeePayrollList) {
@@ -24,7 +25,7 @@ public class EmployeePayrollFileIOService {
         }
     }
 
-    // print payrolls
+    //UC5 Ability for Employee Payroll Service to print the Employee Payrolls
     public void printData(){
         try{
             Files.lines(new File(PAYROLL_FILE_NAME).toPath())
@@ -33,7 +34,7 @@ public class EmployeePayrollFileIOService {
             e.printStackTrace();
         }
     }
-    // count entries
+
     public long countEntries() {
         long entries = 0;
         try {

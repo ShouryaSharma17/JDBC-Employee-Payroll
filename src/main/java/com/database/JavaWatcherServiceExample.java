@@ -10,11 +10,11 @@ import static java.nio.file.StandardWatchEventKinds.*;
 
 public class JavaWatcherServiceExample {
     private final WatchService watcher;
-    private final Map<WatchKey, Path> dirWatcher;
+    private final Map<WatchKey,Path> dirWatcher;
 
     JavaWatcherServiceExample(Path dir) throws IOException {
         this.watcher = FileSystems.getDefault().newWatchService();
-        this.dirWatcher = new HashMap<WatchKey, Path>();
+        this.dirWatcher = new HashMap<WatchKey,Path>();
         scanAndRegisterDirectories(dir);
     }
 
@@ -24,7 +24,7 @@ public class JavaWatcherServiceExample {
     }
 
     private void scanAndRegisterDirectories(final Path start) throws IOException {
-        Files.walkFileTree(start, new SimpleFileVisitor<Path>() {
+        Files.walkFileTree(start,new SimpleFileVisitor<Path>() {
             @Override
             public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attribute) throws IOException {
                 registerDirWatchers(dir);

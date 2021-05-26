@@ -1,4 +1,5 @@
 package com.database;
+
 import java.time.LocalDate;
 
 public class EmployeePayrollData {
